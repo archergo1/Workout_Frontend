@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
+import WorkoutForm from "../components/WorkoutForm";
+import { useWorkoutsContext } from "../hooks/useWorkoutContext";
+
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null);
+  const { workouts, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -9,13 +12,20 @@ const Home = () => {
       console.log(response);
       const json = await response.json();
 
+      console.log("json", json);
       if (response.ok) {
-        setWorkouts(json);
+        dispatch({ type: "SET_WORKOUTS", payload: json });
       }
+      // debugger;
+      // console.log("workouts", workouts);
     };
 
     fetchWorkouts();
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("workouts updated:", workouts);
+  }, [workouts]);
 
   return (
     <div className="home">
@@ -25,6 +35,7 @@ const Home = () => {
             <WorkoutDetails key={workout._id} workout={workout} />
           ))}
       </div>
+      <WorkoutForm />
     </div>
   );
 };
