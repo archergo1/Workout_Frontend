@@ -1,6 +1,8 @@
 import { createContext, useReducer } from "react";
 
 export const WorkoutsContext = createContext();
+export const API_URL =
+  "https://workout-backend-2hqj.onrender.com/api/workouts/";
 
 export const workoutsReducer = (state, action) => {
   switch (action.type) {

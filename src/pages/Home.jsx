@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
 import { useWorkoutsContext } from "../hooks/useWorkoutContext";
+import { API_URL } from "../context/WorkoutContext";
 
 const Home = () => {
   const { workouts, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch("http://localhost:4000/api/workouts");
+      const response = await fetch(API_URL);
       console.log(response);
       const json = await response.json();
 

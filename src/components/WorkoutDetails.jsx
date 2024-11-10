@@ -1,13 +1,14 @@
 import { useWorkoutsContext } from "../hooks/useWorkoutContext";
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { API_URL } from "../context/WorkoutContext";
 
 function WorkoutDetails({ workout }) {
   const { dispatch } = useWorkoutsContext();
   const handleClick = async () => {
     const response = await fetch(
       // 最後面記得要加斜線啊啊啊啊/
-      "http://localhost:4000/api/workouts/" + workout._id,
+      API_URL + workout._id,
       {
         method: "DELETE",
       }

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { API_URL } from "../context/WorkoutContext";
+
 function WorkoutForm() {
   const [title, setTitle] = useState("");
   const [load, setLoad] = useState("");
@@ -9,7 +11,7 @@ function WorkoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const workout = { title, load, reps };
-    const response = await fetch("http://localhost:4000/api/workouts", {
+    const response = await fetch(API_URL, {
       method: "POST",
       body: JSON.stringify(workout),
       headers: {
