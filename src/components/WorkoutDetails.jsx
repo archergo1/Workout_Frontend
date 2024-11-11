@@ -22,14 +22,14 @@ function WorkoutDetails({ workout }) {
 
   return (
     <div className="workout-details">
-      <h4>`  ${workout.title}`</h4>
+      <h4>{workout.title}</h4>
       <p>
         <strong>Load:(kg):</strong>
-        `  ${workout.load}`
+        {`  ${workout.load}`}
       </p>
       <p>
         <strong>Reps:</strong>
-        `  ${workout.reps}`
+        {`  ${workout.reps}`}
       </p>
       <p>
         {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
