@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
 
   const handleSubmit = async (e) => {
     // 防止跳轉頁面
     e.preventDefault();
-
-    console.log(email, password);
+    // console.log(email, password);
+    await login(email, password);
   };
 
   return (
@@ -30,7 +32,8 @@ const Login = () => {
         }}
         value={password}
       />
-      <button>Log in </button>
+      <button disabled={isLoading}>Log in</button>
+      {error & <div className="error">{error}</div>}
     </form>
   );
 };
