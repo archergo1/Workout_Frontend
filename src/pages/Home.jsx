@@ -24,7 +24,7 @@ const Home = () => {
       if (response.ok) {
         dispatch({ type: "SET_WORKOUTS", payload: json });
       }
-      // debugger;
+
       // console.log("workouts", workouts);
     };
 

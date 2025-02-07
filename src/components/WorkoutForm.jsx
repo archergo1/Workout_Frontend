@@ -31,9 +31,11 @@ function WorkoutForm() {
     });
     const json = await response.json();
     if (!response.ok) {
+      // update fail
       setError(json.error);
-      setEmptyFields(json.emptyFields);
+      setEmptyFields(json.emptyFields || []);
     } else {
+      // successful update
       setTitle("");
       setLoad("");
       setReps("");
