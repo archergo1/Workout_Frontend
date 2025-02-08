@@ -10,14 +10,10 @@ function WorkoutDetails({ workout }) {
     if (!user) {
       return;
     }
-    const response = await fetch(
-      // 最後面記得要加斜線啊啊啊啊/
-      API_URL + "workouts/" + workout._id,
-      {
-        method: "DELETE",
-        Authorization: `Bearer ${user.token}`,
-      }
-    );
+    const response = await fetch(API_URL + "workouts/" + workout._id, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${user.token}` },
+    });
     const json = await response.json();
     console.log(json);
     if (response.ok) {
