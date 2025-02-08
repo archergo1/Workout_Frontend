@@ -2,8 +2,7 @@ import { createContext, useReducer } from "react";
 import { workoutsReducer } from "./WorkoutsReducer";
 
 export const WorkoutsContext = createContext();
-export const API_URL =
-  "https://workout-backend-2hqj.onrender.com/api/workouts/";
+export const API_URL = "https://workout-backend-2hqj.onrender.com/api/";
 
 export const WorkoutsContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(workoutsReducer, {

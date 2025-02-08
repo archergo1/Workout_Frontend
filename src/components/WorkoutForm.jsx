@@ -21,7 +21,7 @@ function WorkoutForm() {
     }
 
     const workout = { title, load, reps };
-    const response = await fetch(API_URL, {
+    const response = await fetch(API_URL + "workouts", {
       method: "POST",
       body: JSON.stringify(workout),
       headers: {

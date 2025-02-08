@@ -12,7 +12,7 @@ function WorkoutDetails({ workout }) {
     }
     const response = await fetch(
       // 最後面記得要加斜線啊啊啊啊/
-      API_URL + workout._id,
+      API_URL + "workouts/" + workout._id,
       {
         method: "DELETE",
         Authorization: `Bearer ${user.token}`,
