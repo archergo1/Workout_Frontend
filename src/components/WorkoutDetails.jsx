@@ -19,7 +19,7 @@ function WorkoutDetails({ workout }) {
     }
 
     try {
-      const response = await fetch(`${API_URL}workouts/${workout._id}`, {
+      const response = await fetch(`${API_URL}/workouts/${workout._id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${user.token}`,

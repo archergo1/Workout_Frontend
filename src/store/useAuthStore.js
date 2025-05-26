@@ -6,7 +6,7 @@ export const useAuthStore = create((set) => ({
 
   login: async (email, password) => {
     try {
-      const response = await fetch(`${API_URL}user/login`, {
+      const response = await fetch(`${API_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
