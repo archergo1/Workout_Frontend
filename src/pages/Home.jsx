@@ -1,22 +1,14 @@
 import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
-// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useWorkoutStore } from "../store/useWorkoutStore";
-// import { useAuthContext } from "../hooks/useAuthContext";
 import { useAuthStore } from "../store/useAuthStore";
 
 import { API_URL } from "../context/WorkoutContext";
 
 const Home = () => {
-  // const { workouts, dispatch } = useWorkoutsContext();
-  // const { workouts, setWorkouts } = useWorkoutStore((state) => ({
-  //   workouts: state.workouts,
-  //   setWorkouts: state.setWorkouts,
-  // }));
   const workouts = useWorkoutStore((state) => state.workouts);
   const setWorkouts = useWorkoutStore((state) => state.setWorkouts);
-  // const { user } = useAuthContext();
   const user = useAuthStore((state) => state.user);
 
   useEffect(() => {

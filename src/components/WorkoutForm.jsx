@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { API_URL } from "../context/WorkoutContext";
-// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import { useWorkoutStore } from "../store/useWorkoutStore";
-// import { useAuthContext } from "../hooks/useAuthContext";
 import { useAuthStore } from "../store/useAuthStore";
 
 function WorkoutForm() {
-  // const { dispatch } = useWorkoutsContext();
   const createWorkout = useWorkoutStore((state) => state.createWorkout);
-  // const { user } = useAuthContext();
   const user = useAuthStore((state) => state.user);
+
   const [title, setTitle] = useState("");
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
@@ -45,7 +42,6 @@ function WorkoutForm() {
       setReps("");
       setError(null);
       setEmptyFields([]);
-      // dispatch({ type: "CREATE_WORKOUT", payload: json });
       createWorkout(json);
       console.log("new workout added", json);
     }

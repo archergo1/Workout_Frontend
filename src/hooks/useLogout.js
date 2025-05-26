@@ -1,10 +1,8 @@
 import { useAuthContext } from "./useAuthContext";
-// import { useWorkoutsContext } from "./useWorkoutsContext";
 import { useWorkoutStore } from "../store/useWorkoutStore";
 
 export function useLogout() {
   const { dispatch } = useAuthContext();
-  // const { dispatch: workoutDispatch } = useWorkoutsContext();
   const setWorkouts = useWorkoutStore((state) => state.setWorkouts);
 
   const logout = () => {

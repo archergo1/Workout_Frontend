@@ -1,13 +1,12 @@
 import { useState } from "react";
-// import { useLogin } from "../hooks/useLogin";
 import { useAuthStore } from "../store/useAuthStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const login = useAuthStore((state) => state.login);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e) => {
     // 防止跳轉頁面
