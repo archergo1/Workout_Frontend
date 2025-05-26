@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
+// import { useLogout } from "../hooks/useLogout";
+// import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthStore } from "../store/useAuthStore";
 
 function Navbar() {
-  const { logout } = useLogout();
-  const { user } = useAuthContext();
+  // const { logout } = useLogout();
+  // const { user } = useAuthContext();
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
 
   const handleClick = () => {
     logout();
   };
-
+  console.log("user", user);
   return (
     <header>
       <div className="container">
@@ -19,7 +22,7 @@ function Navbar() {
         <nav>
           {user && (
             <div>
-              <span>{user.email}</span>
+              <span>Hello {user.email}</span>
               <button onClick={handleClick}>Log out</button>
             </div>
           )}

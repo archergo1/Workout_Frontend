@@ -1,40 +1,52 @@
 import { useEffect } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
-import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
-import { useAuthContext } from "../hooks/useAuthContext";
+// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useWorkoutStore } from "../store/useWorkoutStore";
+// import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthStore } from "../store/useAuthStore";
 
 import { API_URL } from "../context/WorkoutContext";
 
 const Home = () => {
-  const { workouts, dispatch } = useWorkoutsContext();
-  const { user } = useAuthContext();
+  // const { workouts, dispatch } = useWorkoutsContext();
+  // const { workouts, setWorkouts } = useWorkoutStore((state) => ({
+  //   workouts: state.workouts,
+  //   setWorkouts: state.setWorkouts,
+  // }));
+  const workouts = useWorkoutStore((state) => state.workouts);
+  const setWorkouts = useWorkoutStore((state) => state.setWorkouts);
+  // const { user } = useAuthContext();
+  const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch(API_URL + "workouts", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      console.log(response);
-      const json = await response.json();
+      try {
+        const response = await fetch(API_URL + "workouts", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
 
-      console.log("json", json);
-      if (response.ok) {
-        dispatch({ type: "SET_WORKOUTS", payload: json });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        setWorkouts(json);
+      } catch (error) {
+        console.error("Failed to fetch workouts:", error);
+        // 可以設置錯誤狀態或顯示錯誤訊息給用戶
       }
-
-      // console.log("workouts", workouts);
     };
 
-    if (user) {
+    if (user?.token) {
       fetchWorkouts();
     }
-  }, [dispatch, user]);
+  }, [user?.token, setWorkouts]);
 
   useEffect(() => {
-    console.log("workouts updated:", workouts);
+    console.log("Workouts updated in Home:", workouts);
   }, [workouts]);
 
   return (

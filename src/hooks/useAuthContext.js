@@ -9,3 +9,4 @@ export const useAuthContext = () => {
   }
   return context;
 };
+// This is substituted buy Zustand

@@ -3,10 +3,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
-import { useAuthContext } from "./hooks/useAuthContext";
+// import { useAuthContext } from "./hooks/useAuthContext";
+import { useAuthStore } from "./store/useAuthStore";
 
 function App() {
-  const { user } = useAuthContext();
+  const user = useAuthStore((state) => state.user);
 
   return (
     <div className="App">
